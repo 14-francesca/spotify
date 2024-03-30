@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         fetch(searchURL, {
             headers: {
-                "Authorization":"Bearer BQDGck1ffk8HQRADos2wblzw-OprCGOJwmjzWIkK1WxGxCA0k427sY5NhtnkPtLbFMGrqxHXvUM_fO3Y4GpcfEplQGTck7f95D1wKUYXEx10F8F7zZg"     
+                "Authorization":"Bearer BQC94QWPDPo9Yuf8ETAsRYGE1pY0Y8IABT1n5chpyS6KvZpfQi0HRFJkbFLc5lCOqCPVYvE7UgS-_85ElqepuFLGZ4FELEQTE20U9AQ4oizpO71Vnpo"     
             }
         }).then(resp => resp.json()) 
         .then(r => {
@@ -35,6 +35,22 @@ document.addEventListener('DOMContentLoaded', function () {
         const albumImageElement = document.getElementById('albumImage');
     }
 
+
+    albumNameElement.text.Content = trackData.tracks.items[0].album.name;
+    artistNameElement.textContent = trackData.tracks.items[0].album.artists[0].name;
+    trackNameElement.textContent =trackData.tracks.items[0].name;
+    durationElement.textContent = formatDuration(trackData.tracks.items[0].duration_ms);
+    popularityElement.textContent = trackData.tracks.items[0].popularity;
+    albumImageElement.src.trackData.tracks.items[0].album.images[0].url
+;
+
+
+function formatDuration(duration) {
+    const minutes = Math.floor(duration / 60000);
+    const seconds = ((duration % 60000)/1000).toFixed(0);
+    return `${minutes}:${(seconds < 10 ? '0' : '')}${seconds}`;
+    
+}
 
   
 });
